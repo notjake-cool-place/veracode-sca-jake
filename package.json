@@ -1,0 +1,39 @@
+{
+  "name": "Veracode Dependency Scanning",
+  "version": "1.0.8",
+  "description": "An action to execute Veracode Software Composition Analysis Scaning as a GitHub Action",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test-gql": "tsc && NODE_ENV=test node -r dotenv/config ./dist/test/graphql.js",
+    "test-url": "tsc && NODE_ENV=test node -r dotenv/config ./dist/test/testRun.js",
+    "clean": "rm -rf ./dist/ || true",
+    "build": "npm run clean && ncc build ./src/action.ts --license license"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veracode/veracode-sca.git"
+  },
+  "keywords": [
+    "Veracode",
+    "SCA",
+    "Other"
+  ],
+  "author": "Veracode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/veracode/veracode-sca/issues"
+  },
+  "homepage": "https://github.com/veracode/veracode-sca#readme",
+  "devDependencies": {
+    "@types/node": "^16.18.98",
+    "@vercel/ncc": "^0.38.4",
+    "dotenv": "^15.0.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@actions/artifact": "^2.1.4",
+    "@actions/artifact-v1": "npm:@actions/artifact@^1.1.1",
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.0.0"
+  }
+}
