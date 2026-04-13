@@ -185,12 +185,9 @@ async function runScan(options: Options): Promise<void> {
             commandOutput = `--json=${SCA_OUTPUT_FILE}`;
         }
 
-        // Artifact naming strategy:
-        // - scaFixEnabled (both JSON+TXT): Use 'Json' suffix to distinguish from TXT-only artifacts
-        // - Otherwise (TXT only): Use base name
-        const artifactNameBase = options.scaFixEnabled
-            ? 'Veracode Agent Based SCA Results Json'
-            : 'Veracode Agent Based SCA Results';
+        // Always use the base artifact name regardless of output format
+        // (whether it contains JSON+TXT with --show-cli or TXT only)
+        const artifactNameBase = 'Veracode Agent Based SCA Results';
         extraCommands = `${extraCommands}${options.recursive ? '--recursive ' : ''}${options.quick ? '--quick ' : ''}${options.allowDirty ? '--allow-dirty ' : ''}${options.updateAdvisor ? '--update-advisor ' : ''}${skipVMS ? '--skip-vms ' : ''}${noGraphs ? '--no-graphs ' : ''}${options.debug ? '--debug ' : ''}${skipCollectorsAttr}${scanCollectorsAttr}`;
 
         if (runnerOS == 'Windows') {
